@@ -8,7 +8,12 @@
 </head>
 <body>
 <%   
-response.sendRedirect("http://www.google.com");  
+  
+out.print("Welcome "+request.getParameter("uname"));  
+  
+String driver=application.getInitParameter("dname");  
+out.print("driver name is="+driver);  
+  
 %>  
 </body>
 </html>
