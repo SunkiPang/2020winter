@@ -13,5 +13,10 @@ Today is: <%= new Date() %>
 <%@ page buffer="16kb" %>  
 Today is: <%= new java.util.Date() %>  
 
+<%@ page isErrorPage="true" %>  
+  
+ Sorry an exception occured!<br/>  
+The exception is: <%= exception %>  
+
 </body>
 </html>
