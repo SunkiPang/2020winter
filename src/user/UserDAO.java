@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
  
 public class UserDAO {
  
@@ -12,10 +11,10 @@ public class UserDAO {
     private PreparedStatement pstmt;  
     private ResultSet rs;   //정보를 담을 수 있는 변수를 생성
     
-    public UserDAO() throws ClassNotFoundException, SQLException {
+    public UserDAO() {
         try {
             //생성자
-            String dbURL="jdbc:mysql://localhost:3306/sunkist_db?serverTimezone=UTC";                             
+            String dbURL="jdbc:mysql://db4free.net:3306/sunkist_db?serverTimezone=UTC";                             
             String dbID="skpang119";
             String dbPassword="gjfzm1352";
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -27,7 +26,7 @@ public class UserDAO {
     }
             
     public int join(User user) {
-        String SQL= "INSERT INTO USER VALUES(?, ?, ?, ?, ?) ";
+        String SQL= "INSERT INTO USER VALUES(userID, userPassword, userName, userGender, userEmail) ";
         try {
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1,user.getUserID());
@@ -39,8 +38,9 @@ public class UserDAO {
         }
         catch(Exception e) {
             e.printStackTrace();
+            return -1;
         }
-        return -1;
+        
     }
     
 }
