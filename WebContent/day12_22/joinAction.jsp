@@ -19,6 +19,10 @@
     String userID=null;
     if(session.getAttribute("userID")!=null){
         userID = (String) session.getAttribute("userID");
+        PrintWriter script = response.getWriter();
+        script.println("<script>");
+        script.println("alert(userID)");
+        script.println("</script>");
     }
     if(userID!=null){
         PrintWriter script = response.getWriter();
@@ -27,7 +31,7 @@
         script.println("location.href='/main.jsp'");
         script.println("</script>");
     }
-    
+    	
         if(user.getUserID() == null || user.getUserPassword() == null || 
         user.getUserName() == null || user.getUserGender() == null || 
         user.getUserEmail() == null){
@@ -43,6 +47,7 @@
             if(result == -1){
                 PrintWriter script = response.getWriter();
                 script.println("<script>");
+                
                 script.println("alert('이미 존재하는 아이디입니다.')");
                 script.println("history.back()");
                 script.println("</script>");
